@@ -6,12 +6,14 @@ class MyData2 {
   int created;
   int ups;
   int downs;
+  bool? favorito;
   MyData2({
     required this.selfText,
     required this.authorFullName,
     required this.created,
     required this.ups,
     required this.downs,
+    this.favorito
   });
 
   Map<String, dynamic> toMap() {
@@ -31,6 +33,7 @@ class MyData2 {
       created: map['created']?.toInt() ?? 0,
       ups: map['ups']?.toInt() ?? 0,
       downs: map['downs']?.toInt() ?? 0,
+      favorito: map['favorito'] ?? false,
     );
   }
 
