@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 class MyData2 {
@@ -7,14 +8,16 @@ class MyData2 {
   int ups;
   int downs;
   bool? favorito;
-  MyData2({
-    required this.selfText,
-    required this.authorFullName,
-    required this.created,
-    required this.ups,
-    required this.downs,
-    this.favorito
-  });
+  String idApi;
+  MyData2(
+      {required this.selfText,
+      required this.authorFullName,
+      required this.created,
+      required this.ups,
+      required this.downs,
+      this.favorito,
+      required this.idApi,
+      });
 
   Map<String, dynamic> toMap() {
     return {
@@ -23,6 +26,7 @@ class MyData2 {
       'created': created,
       'ups': ups,
       'downs': downs,
+      'id': idApi
     };
   }
 
@@ -34,6 +38,7 @@ class MyData2 {
       ups: map['ups']?.toInt() ?? 0,
       downs: map['downs']?.toInt() ?? 0,
       favorito: map['favorito'] ?? false,
+      idApi: map['id'] ?? '',
     );
   }
 
@@ -42,8 +47,10 @@ class MyData2 {
   factory MyData2.fromJson(String source) =>
       MyData2.fromMap(json.decode(source));
 
+ 
+
   @override
   String toString() {
-    return 'MyData2(selfText: $selfText, authorFullName: $authorFullName, created: $created, ups: $ups, downs: $downs)';
+    return 'MyData2(selfText: $selfText, authorFullName: $authorFullName, created: $created, ups: $ups, downs: $downs, favorito: $favorito, id: $idApi)';
   }
 }

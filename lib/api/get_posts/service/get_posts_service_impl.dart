@@ -8,5 +8,5 @@ class GetPostsServiceImpl implements GetPostsService {
   GetPostsServiceImpl({required GetPostsRepositoryImpl getPostsRepositoryImpl})
       : _getPostsRepositoryImpl = getPostsRepositoryImpl;
   @override
-  Future<ModelPai> getPosts(int limit) => _getPostsRepositoryImpl.getPosts(limit);
+  Future<ModelPai> getPosts(int limit, int page) => _getPostsRepositoryImpl.getPosts(limit, page);
 }

@@ -13,10 +13,65 @@ class ListaPostPage extends GetView<ListaPostController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lista'),
+        title: const Text('Lista de posts'),
         centerTitle: true,
         elevation: 0,
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.filter_3))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.defaultDialog(
+                    title: 'Filtrar',
+                    content: Column(
+                      children: [
+                        SizedBox(
+                          height: Get.height * 0.02,
+                        ),
+                        SizedBox(
+                            child: Obx(() => CheckboxListTile(
+                                title: const Text('Todos'),
+                                value: controller.checkBoolTodos.value,
+                                activeColor: Colors.blueGrey,
+                                onChanged: (value) {
+                                  controller.checkBoolTodos.value =
+                                      !controller.checkBoolTodos.value;
+                                  if (controller.checkBoolTodos.value == true) {
+                                    controller.checkBoolFavoritos.value = false;
+                                  }
+                                }))),
+                        SizedBox(
+                          height: Get.height * 0.01,
+                        ),
+                        SizedBox(
+                            child: Obx(() => CheckboxListTile(
+                                title: const Text('Favoritos'),
+                                value: controller.checkBoolFavoritos.value,
+                                activeColor: Colors.blueGrey,
+                                onChanged: (value) {
+                                  controller.checkBoolFavoritos.value =
+                                      !controller.checkBoolFavoritos.value;
+                                  if (controller.checkBoolFavoritos.value ==
+                                      true) {
+                                    controller.checkBoolTodos.value = false;
+                                  }
+                                }))),
+                        SizedBox(
+                          height: Get.height * 0.01,
+                        ),
+                      ],
+                    ),
+                    confirm: TextButton(
+                      onPressed: () {
+                        controller.filterFavorites();
+                        Get.back();
+                      },
+                      child: const Text(
+                        'OK',
+                        style: TextStyle(color: Colors.blueGrey),
+                      ),
+                    ));
+              },
+              icon: const Icon(Icons.filter_alt_sharp))
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -31,16 +86,35 @@ class ListaPostPage extends GetView<ListaPostController> {
                 ),
                 controller.obx(
                     (state) {
+                      final totalItems = (state?.length ?? 0);
                       return SizedBox(
                         height: Get.height * 0.75,
                         child: ListView.builder(
-                          //itemCount: 3,
-                          itemCount: state?.length,
+                          controller: controller.scroll,
+                          itemCount: totalItems + 1,
                           itemBuilder: (_, index) {
+                            if (index == totalItems) {
+                              return Obx(() {
+                                return Visibility(
+                                  visible: controller.isLoading,
+                                  child: const Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(bottom: 20.0),
+                                      child: Text(
+                                        'Carregando novos posts',
+                                        style: TextStyle(color: Colors.black87),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              });
+                            }
                             RxBool favorite = false.obs;
                             final MyChildren item = state![index];
-                            print(item);
 
+                            if (item.data!.favorito == true) {
+                              favorite.value = true;
+                            }
                             return Obx(() {
                               return CardPosts(
                                 comentario: item.data!.selfText,
@@ -61,7 +135,7 @@ class ListaPostPage extends GetView<ListaPostController> {
                                 onPressedIcon: () {
                                   favorite.toggle();
                                   item.data!.favorito = favorite.value;
-                                  print(item.data!.favorito);
+                                  controller.addBanco(item);
                                 },
                               );
                             });
@@ -88,7 +162,7 @@ class ListaPostPage extends GetView<ListaPostController> {
                             child: SizedBox(
                               width: Get.width * 0.80,
                               child: const Text(
-                                'Lista vazia',
+                                'Lista de posts vazia',
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -102,7 +176,9 @@ class ListaPostPage extends GetView<ListaPostController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
-                            Center(child: Text('Deu ruim')),
+                            Center(
+                                child:
+                                    Text('Não foi possivel carregar a lista')),
                           ],
                         ),
                       );

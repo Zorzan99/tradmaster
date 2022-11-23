@@ -5,15 +5,11 @@ import 'get_posts_repository.dart';
 
 class GetPostsRepositoryImpl implements GetPostsRepository {
   @override
-  Future<ModelPai> getPosts(int limit) async {
+  Future<ModelPai> getPosts(int limit, int page) async {
     var url =
-        Uri.parse('https://www.reddit.com/r/climbing/top.json?limit=$limit');
-    print(url);
+        Uri.parse('https://www.reddit.com/r/climbing/top.json?limit=$limit&page=$page');
     final response = await http.get(url);
-    print(response.statusCode);
-
     Map<String, dynamic> mapResponse = jsonDecode(response.body);
-    print('mapresponse ${mapResponse}');
     return ModelPai.fromMap(mapResponse);
   }
 }

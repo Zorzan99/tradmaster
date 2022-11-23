@@ -42,7 +42,7 @@ class CardPosts extends StatelessWidget {
                   SizedBox(
                     width: Get.width * 0.50,
                     child: Text(
-                      autor,
+                      'Autor: $autor',
                       maxLines: 1,
                       textAlign: TextAlign.left,
                       overflow: TextOverflow.ellipsis,
@@ -56,16 +56,16 @@ class CardPosts extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: Get.width * 0.25,
-                        child: Text(upVotes,
+                        width: Get.width * 0.45,
+                        child: Text('Votos positivos: $upVotes',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                                 color: Colors.grey, fontSize: 16)),
                       ),
                       SizedBox(
-                        width: Get.width * 0.25,
-                        child: Text(downVotes,
+                        width: Get.width * 0.45,
+                        child: Text('Votos negativo: $downVotes',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
@@ -73,14 +73,12 @@ class CardPosts extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: Get.height * 0.01,
-                  ),
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: Get.width * 0.30,
-                        child: Text(dataComentario,
+                        width: Get.width * 0.70,
+                        child: Text('Data comentario: $dataComentario',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
@@ -90,12 +88,9 @@ class CardPosts extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: Get.height * 0.01,
-                  ),
-                  SizedBox(
                     width: Get.width * 0.99,
-                    child: Text(comentario,
-                        maxLines: 1,
+                    child: Text('Comentario: $comentario',
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style:
                             const TextStyle(color: Colors.grey, fontSize: 16)),
