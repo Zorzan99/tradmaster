@@ -39,6 +39,9 @@ dependencies:
   get: ^4.6.5
   http: ^0.13.5
   sqflite: ^2.0.3+1
+  firebase_core: ^2.3.0
+  firebase_auth: ^4.1.4
+  validatorless: ^1.2.3
 
 
 dev_dependencies:

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "427052116893",
+    "project_id": "trademaster-efd36",
+    "storage_bucket": "trademaster-efd36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427052116893:android:e3abbb7246348752555d74",
+        "android_client_info": {
+          "package_name": "com.example.trademaster"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427052116893-90g2mghen7rn3v73ko30v6t4icb8u6hi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.trademaster",
+            "certificate_hash": "8510a008f38bc2478a45ac23908c17de7649e0ca"
+          }
+        },
+        {
+          "client_id": "427052116893-7iedkd4d2q6n6svbc9ppicrqoagqdc3e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-HQvOtfctPFSfSstEVM648bZIWNCbBFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427052116893-7iedkd4d2q6n6svbc9ppicrqoagqdc3e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
